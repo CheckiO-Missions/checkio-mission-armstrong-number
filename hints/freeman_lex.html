@@ -1,0 +1,166 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            Catch an idea 💡! Convert given number to string, find out its length and declare variable for sum of powered digits. Iterate over the string, convert every digit back to integer, raise it to a proper power (length of string) and add to a value of summing variable. At the end, return the result of comparing calculated sum with original number.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Convert given number to string with <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a> function.
+        </p>
+        <pre class="brush: python">
+text = str(num)
+        </pre>
+        <p>
+            Find out the length of the string with <a target="_blank" href="https://www.w3schools.com/python/ref_func_len.asp">len()</a> function.
+        </p>
+        <pre class="brush: python">
+l = len(text)
+        </pre>
+        <p>
+            Declare variable for the sum of powered digits with initial value of 0.
+        </p>
+        <pre class="brush: python">
+res = 0
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What to do next?
+    </div>
+    <div class="answer">
+        <p>
+            Iterate over <b class="code">text</b> using <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>. 
+        </p>
+        <pre class="brush: python">
+for digit in text:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I still need a hint.
+    </div>
+    <div class="answer">
+        <p>
+            Convert every digit back to integer with <a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a> function ...
+        </p>
+        <pre class="brush: python">
+int(digit)
+        </pre>
+        <p>
+            ... and raise it to a power equals length of the string <b class="code">l</b>. 
+        </p>
+        <pre class="brush: python">
+int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to finish the expression?
+    </div>
+    <div class="answer">
+        <p>
+            Inside loop increment <b class="code">res</b> value with the result of above expression.
+        </p>
+        <pre class="brush: python">
+res += int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to make a comparison of values?
+    </div>
+    <div class="answer">
+        <p>
+            Yes, et the end you need to return the logic result of comparing calculated sum of powered digits and original number.
+        </p>
+        <pre class="brush: python">
+return res == num
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all previous hints and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    text = str(num)
+    l = len(text)
+    res = 0
+    for digit in text:
+        res += int(digit) ** l
+        
+    return res == num
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            Without converting to string create a list of digits by continuously division by 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    temp, digits = num, []
+    while temp:
+        temp, digit = divmod(temp, 10)
+        digits.append(digit)
+    l = len(digits)
+
+    return sum(d**l for d in digits) == num
+        </pre>
+        </div>
+        <p>
+            Using walrus operator to declare two variables in one line and map function to apply some function to every digit.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    l = len(text := str(num))
+    
+    return sum(map(lambda i: int(i)**l, text)) == num
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it 👍!
+    </div>
+</div>
+</body>

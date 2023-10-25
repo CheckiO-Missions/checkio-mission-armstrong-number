@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            Catch an idea 💡! Convert given number to string, find out its length and declare variable for sum of powered digits. Iterate over the string, convert every digit back to integer, raise it to a proper power (length of string) and add to a value of summing variable. At the end, return the result of comparing calculated sum with original number.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Convert given number to string with <a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a> method.
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            Find out the length of the string with <a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a> property.
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            Declare variable for the sum of powered digits with initial value of 0.
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What to do next?
+    </div>
+    <div class="answer">
+        <p>
+            Iterate over <b class="code">text</b> using <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a>. 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I still need a hint.
+    </div>
+    <div class="answer">
+        <p>
+            Convert every digit back to integer with <a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a> method ...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... and raise it to a power equals length of the string <b class="code">l</b>. 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to finish the expression?
+    </div>
+    <div class="answer">
+        <p>
+            Inside loop increment <b class="code">res</b> value with the result of above expression.
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to make a comparison of values?
+    </div>
+    <div class="answer">
+        <p>
+            Yes, et the end you need to return the logic result of comparing calculated sum of powered digits and original number.
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all previous hints and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Javascript Hero!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            Without converting to string create a list of digits by continuously division by 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp > 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            Create an array of digits by converting original number to string, splitting it into array of string digits and converting every string digit back into integer. Use <b class="code">reduce</b> to count sum of powered digits.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it 👍!
+    </div>
+</div>
+</body>
