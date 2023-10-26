@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę złapać pomysł 💡! Proszę przekonwertować podaną liczbę na ciąg, sprawdzić jego długość i zadeklarować zmienną dla sumy zasilanych cyfr. Proszę wykonać iterację po ciągu, przekonwertować każdą cyfrę z powrotem na liczbę całkowitą, podnieść ją do odpowiedniej potęgi (długość ciągu) i dodać do wartości zmiennej sumującej. Na koniec proszę zwrócić wynik porównania obliczonej sumy z oryginalną liczbą.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Proszę przekonwertować podaną liczbę na ciąg znaków za pomocą metody <a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a>.
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            Proszę sprawdzić długość ciągu znaków za pomocą właściwości <a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a>.
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            Proszę zadeklarować zmienną dla sumy zasilanych cyfr z wartością początkową 0.
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co robić dalej?
+    </div>
+    <div class="answer">
+        <p>
+            Iterować po <b class="code">text</b> używając <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a>. 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nadal potrzebuję podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę przekonwertować każdą cyfrę z powrotem na liczbę całkowitą za pomocą metody <a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a>...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... i podnieść ją do potęgi równej długości ciągu <b class="code">l</b>. 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak zakończyć wyrażenie?
+    </div>
+    <div class="answer">
+        <p>
+            Wewnątrz pętli proszę zwiększyć wartość <b class="code">res</b> o wynik powyższego wyrażenia.
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak dokonać porównania wartości?
+    </div>
+    <div class="answer">
+        <p>
+            Tak, w końcu musi Pan zwrócić logiczny wynik porównania obliczonej sumy zasilanych cyfr i oryginalnej liczby.
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak więc powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć wszystkie poprzednie podpowiedzi i zawinąć kod w wyrażenie funkcyjne. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Poniżej znajduje się całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwym 🥇 bohaterem Javascript!
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę pobrać!</p>
+        <p>
+            Bez konwersji na ciąg znaków proszę utworzyć listę cyfr poprzez ciągłe dzielenie przez 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp> 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            Proszę utworzyć tablicę cyfr, konwertując oryginalną liczbę na ciąg, dzieląc ją na tablicę cyfr ciągu i konwertując każdą cyfrę ciągu z powrotem na liczbę całkowitą. Proszę użyć <b class="code">reduce</b>, aby policzyć sumę zasilanych cyfr.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>
