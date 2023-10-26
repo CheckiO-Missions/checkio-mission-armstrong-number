@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Trouvez une idée 💡! Convertissez un nombre donné en chaîne de caractères, déterminez sa longueur et déclarez une variable pour la somme des chiffres en puissance. Itérer sur la chaîne, reconvertir chaque chiffre en entier, l'élever à la puissance appropriée (longueur de la chaîne) et l'ajouter à la valeur de la variable de sommation. À la fin, renvoyez le résultat de la comparaison de la somme calculée avec le nombre original.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Convertissez un nombre donné en chaîne de caractères avec la méthode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a>.
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            Déterminez la longueur de la chaîne de caractères à l'aide de la propriété <a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a>.
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            Déclarez une variable pour la somme des chiffres alimentés avec une valeur initiale de 0.
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            Itérer sur <b class="code">text</b> en utilisant <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a>. 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai encore besoin d'un indice.
+    </div>
+    <div class="answer">
+        <p>
+            Convertissez chaque chiffre en entier avec la méthode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a>...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... et l'élever à une puissance égale à la longueur de la chaîne <b class="code">l</b>. 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment terminer l'expression?
+    </div>
+    <div class="answer">
+        <p>
+            A l'intérieur de la boucle, incrémentez la valeur <b class="code">res</b> avec le résultat de l'expression ci-dessus.
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment comparer des valeurs?
+    </div>
+    <div class="answer">
+        <p>
+            Oui, à la fin vous devez renvoyer le résultat logique de la comparaison entre la somme calculée des chiffres chiffrés et le nombre d'origine.
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de combiner tous les indices précédents et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être un vrai 🥇 Javascript Hero!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Sans convertir en chaîne de caractères, créez une liste de chiffres par division continue par 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp> 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            Créez un tableau de chiffres en convertissant le nombre original en chaîne de caractères, en le divisant en un tableau de chaînes de caractères et en reconvertissant chaque chaîne de caractères en entier. Utilisez <b class="code">reduce</b> pour compter la somme des chiffres entiers.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>
