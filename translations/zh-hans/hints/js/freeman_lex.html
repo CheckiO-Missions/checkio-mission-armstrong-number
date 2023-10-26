@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            给你个主意💡！将给定的数字转换成字符串，找出它的长度，并声明变量来表示供电数字的总和。对字符串进行迭代，将每个数字转换回整数，将其提升到适当的幂次（字符串的长度），并与求和变量的值相加。最后，返回计算出的和与原始数字的比较结果。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a> 方法将给定的数字转换为字符串。
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a> 属性找出字符串的长度。
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            声明初始值为 0 的变量，用于计算供电数字之和。
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步该怎么做？
+    </div>
+    <div class="answer">
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a> 对<b class="code">text</b> 进行迭代。 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我仍然需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a> 方法将每个数字转换回整数 ...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... 并将其提升到等于字符串长度的幂<b class="code">l</b> 。 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何完成表达式？
+    </div>
+    <div class="answer">
+        <p>
+            在循环内部，用上述表达式的结果递增<b class="code">res</b> 值。
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何进行数值比较？
+    </div>
+    <div class="answer">
+        <p>
+            是的，最后您需要返回计算出的供电数字之和与原始数字的逻辑比较结果。
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前所有的提示连接起来，然后将代码封装成函数表达式即可。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        向我展示更多解决方案！<br />
+        因为我想成为真正的 🥇 Javascript 英雄！
+    </div>
+    <div class="answer">
+        <p>当然，抓紧时间！</p>
+        <p>
+            在不转换为字符串的情况下，通过连续除以 10 创建一个数字列表。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp> 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            通过将原始数字转换为字符串，将其拆分为字符串数字数组，再将每个字符串数字转换回整数，从而创建数字数组。使用<b class="code">reduce</b> 计算供电数字的总和。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>单击任务菜单中的<b>Best Solutions</b> ，查看许多其他有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>
