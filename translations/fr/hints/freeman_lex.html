@@ -1,0 +1,166 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Trouvez une idée 💡! Convertissez un nombre donné en chaîne de caractères, déterminez sa longueur et déclarez une variable pour la somme des chiffres en puissance. Itérer sur la chaîne, reconvertir chaque chiffre en entier, l'élever à la puissance appropriée (longueur de la chaîne) et l'ajouter à la valeur de la variable de sommation. À la fin, renvoyez le résultat de la comparaison de la somme calculée avec le nombre original.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Convertissez un nombre donné en chaîne de caractères à l'aide de la fonction <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a>.
+        </p>
+        <pre class="brush: python">
+text = str(num)
+        </pre>
+        <p>
+            Déterminez la longueur de la chaîne de caractères avec la fonction <a target="_blank" href="https://www.w3schools.com/python/ref_func_len.asp">len()</a>.
+        </p>
+        <pre class="brush: python">
+l = len(text)
+        </pre>
+        <p>
+            Déclarez une variable pour la somme des chiffres alimentés avec une valeur initiale de 0.
+        </p>
+        <pre class="brush: python">
+res = 0
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            Itérer sur <b class="code">text</b> en utilisant <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>. 
+        </p>
+        <pre class="brush: python">
+for digit in text:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai encore besoin d'un indice.
+    </div>
+    <div class="answer">
+        <p>
+            Convertissez chaque chiffre en entier avec la fonction <a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a>...
+        </p>
+        <pre class="brush: python">
+int(digit)
+        </pre>
+        <p>
+            ... et l'élever à une puissance égale à la longueur de la chaîne <b class="code">l</b>. 
+        </p>
+        <pre class="brush: python">
+int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment terminer l'expression?
+    </div>
+    <div class="answer">
+        <p>
+            A l'intérieur de la boucle, incrémentez la valeur <b class="code">res</b> avec le résultat de l'expression ci-dessus.
+        </p>
+        <pre class="brush: python">
+res += int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment comparer des valeurs?
+    </div>
+    <div class="answer">
+        <p>
+            Oui, à la fin vous devez renvoyer le résultat logique de la comparaison entre la somme calculée des chiffres chiffrés et le nombre d'origine.
+        </p>
+        <pre class="brush: python">
+return res == num
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de combiner tous les indices précédents et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    text = str(num)
+    l = len(text)
+    res = 0
+    for digit in text:
+        res += int(digit) ** l
+        
+    return res == num
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Sans convertir en chaîne de caractères créer une liste de chiffres par division continue par 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    temp, digits = num, []
+    while temp:
+        temp, digit = divmod(temp, 10)
+        digits.append(digit)
+    l = len(digits)
+
+    return sum(d**l for d in digits) == num
+        </pre>
+        </div>
+        <p>
+            En utilisant l'opérateur walrus pour déclarer deux variables dans une ligne et la fonction map pour appliquer une fonction à chaque chiffre.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    l = len(text:= str(num))
+    
+    return sum(map(lambda i: int(i)**l, text)) == num
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>
