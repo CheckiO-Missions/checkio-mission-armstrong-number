@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Я не уявляю, як почати вирішувати цю місію.
+    </div>
+    <div class="answer">
+        <p>
+            Лови ідею 💡! Перетворіть задане число у рядок, знайдіть його довжину та оголосіть змінну для суми піднесених до степеня цифр. Пройдіться по рядку, перетворіть кожну цифру назад у ціле число, піднесіть його до відповідного степеня (довжина рядка) і додайте до значення змінної, що підсумовує. В кінці виведіть результат порівняння отриманої суми з початковим числом.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Добре, з чого мені почати?
+    </div>
+    <div class="answer">
+        <p>
+            Перетворіть задане число у рядок методом <a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a>.
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            Дізнатися довжину рядка з допомогою властивості <a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a>.
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            Оголосіть змінну для суми включених цифр з початковим значенням 0.
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Що робити далі?
+    </div>
+    <div class="answer">
+        <p>
+            Ітерація над <b class="code">text</b> за допомогою <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a>. 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Мені все ще потрібна підказка.
+    </div>
+    <div class="answer">
+        <p>
+            Перетворіть кожну цифру назад в ціле число методом <a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a>...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... і піднесіть до степеня, що дорівнює довжині рядка <b class="code">l</b>. 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Як завершити вираз?
+    </div>
+    <div class="answer">
+        <p>
+            Усередині циклу збільшуємо <b class="code">res</b> значення на результат вищенаведеного виразу.
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Як зробити порівняння значень?
+    </div>
+    <div class="answer">
+        <p>
+            Так, і в кінці вам потрібно повернути логічний результат порівняння обчисленої суми включених цифр і вихідного числа.
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Отже, як повинен виглядати мій кінцевий розв'язок?
+    </div>
+    <div class="answer">
+        <p>
+            Вам просто потрібно об'єднати всі попередні підказки і обернути ваш код у вираз функції. Наполегливо рекомендуємо використовувати підказки типів для вхідних та вихідних даних.
+        </p>
+        <p>Ось і все рішення:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Покажіть мені більше рішень!<br />
+        тому що я хочу бути справжнім 🥇 Героєм Javascript!
+    </div>
+    <div class="answer">
+        <p>Звичайно, хапай!</p>
+        <p>
+            Без перетворення в рядок створити список цифр шляхом неперервного ділення на 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp> 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            Створіть масив цифр, перетворивши вихідне число у рядок, розбивши його на масив рядкових цифр і перетворивши кожну рядкову цифру назад у ціле число. Використовуйте <b class="code">reduce</b> для підрахунку суми отриманих цифр.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>Натисніть <b>Best Solutions</b> у меню завдання і побачите багато інших цікавих розв'язків!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Дякую! Тепер я знаю і розумію більше! Все працює чудово!
+    </div>
+    <div class="answer">
+        Радий це чути 👍!
+    </div>
+</div>
+</body>
