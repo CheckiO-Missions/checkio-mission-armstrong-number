@@ -1,0 +1,166 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę złapać pomysł 💡! Proszę przekonwertować podaną liczbę na ciąg, sprawdzić jego długość i zadeklarować zmienną dla sumy zasilanych cyfr. Proszę wykonać iterację po ciągu, przekonwertować każdą cyfrę z powrotem na liczbę całkowitą, podnieść ją do odpowiedniej potęgi (długość ciągu) i dodać do wartości zmiennej sumującej. Na koniec proszę zwrócić wynik porównania obliczonej sumy z oryginalną liczbą.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Proszę przekonwertować podaną liczbę na ciąg znaków za pomocą funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a>.
+        </p>
+        <pre class="brush: python">
+text = str(num)
+        </pre>
+        <p>
+            Proszę sprawdzić długość ciągu znaków za pomocą funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_len.asp">len()</a>.
+        </p>
+        <pre class="brush: python">
+l = len(text)
+        </pre>
+        <p>
+            Proszę zadeklarować zmienną dla sumy zasilanych cyfr z wartością początkową 0.
+        </p>
+        <pre class="brush: python">
+res = 0
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co robić dalej?
+    </div>
+    <div class="answer">
+        <p>
+            Iterować po <b class="code">text</b> używając <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for loop</a>. 
+        </p>
+        <pre class="brush: python">
+for digit in text:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nadal potrzebuję podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę przekonwertować każdą cyfrę z powrotem na liczbę całkowitą za pomocą funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a>...
+        </p>
+        <pre class="brush: python">
+int(digit)
+        </pre>
+        <p>
+            ... i podnieść ją do potęgi równej długości ciągu <b class="code">l</b>. 
+        </p>
+        <pre class="brush: python">
+int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak zakończyć wyrażenie?
+    </div>
+    <div class="answer">
+        <p>
+            Wewnątrz pętli proszę zwiększyć wartość <b class="code">res</b> o wynik powyższego wyrażenia.
+        </p>
+        <pre class="brush: python">
+res += int(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak dokonać porównania wartości?
+    </div>
+    <div class="answer">
+        <p>
+            Tak, w końcu musi Pan zwrócić logiczny wynik porównania obliczonej sumy zasilanych cyfr i oryginalnej liczby.
+        </p>
+        <pre class="brush: python">
+return res == num
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak więc powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć wszystkie poprzednie podpowiedzi i zawinąć kod w wyrażenie funkcyjne. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Poniżej znajduje się całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    text = str(num)
+    l = len(text)
+    res = 0
+    for digit in text:
+        res += int(digit) ** l
+        
+    return res == num
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwą 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę łapać!</p>
+        <p>
+            Bez konwersji na ciąg znaków proszę utworzyć listę cyfr poprzez ciągłe dzielenie przez 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    temp, digits = num, []
+    while temp:
+        temp, digit = divmod(temp, 10)
+        digits.append(digit)
+    l = len(digits)
+
+    return sum(d**l for d in digits) == num
+        </pre>
+        </div>
+        <p>
+            Używając operatora mors do zadeklarowania dwóch zmiennych w jednym wierszu i funkcji map, aby zastosować jakąś funkcję do każdej cyfry.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def is_armstrong(num: int) -> bool:
+
+    l = len(text:= str(num))
+    
+    return sum(map(lambda i: int(i)**l, text)) == num
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>
