@@ -1,0 +1,172 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Konvertieren Sie die gegebene Zahl in eine Zeichenkette, ermitteln Sie ihre Länge und deklarieren Sie eine Variable für die Summe der angetriebenen Ziffern. Iterieren Sie über die Zeichenkette, konvertieren Sie jede Ziffer zurück in eine ganze Zahl, erhöhen Sie sie auf eine geeignete Potenz (Länge der Zeichenkette) und addieren Sie sie zu einem Wert der summierenden Variablen. Geben Sie am Ende das Ergebnis des Vergleichs der berechneten Summe mit der ursprünglichen Zahl zurück.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Konvertieren Sie eine gegebene Zahl in einen String mit der Methode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_tostring_string.asp">toString()</a>.
+        </p>
+        <pre class="brush: javascript">
+const text = num.toString();
+        </pre>
+        <p>
+            Ermitteln Sie die Länge des Strings mit der Eigenschaft <a target="_blank" href="https://www.w3schools.com/jsref/jsref_length_string.asp">length</a>.
+        </p>
+        <pre class="brush: javascript">
+const l = text.length;
+        </pre>
+        <p>
+            Deklarieren Sie eine Variable für die Summe der angetriebenen Ziffern mit dem Anfangswert 0.
+        </p>
+        <pre class="brush: javascript">
+let res = 0;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Iterieren Sie über <b class="code">text</b> mit <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for/of loop</a>. 
+        </p>
+        <pre class="brush: javascript">
+for (let digit of text)
+    ...;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Konvertieren Sie jede Ziffer mit der Methode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_parseint.asp">parseInt()</a> zurück in eine Ganzzahl ...
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit)
+        </pre>
+        <p>
+            ... und erhöhen Sie sie auf eine Potenz, die der Länge der Zeichenkette entspricht <b class="code">l</b>. 
+        </p>
+        <pre class="brush: javascript">
+parseInt(digit) ** l
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie wird der Ausdruck beendet?
+    </div>
+    <div class="answer">
+        <p>
+            Erhöhen Sie innerhalb der Schleife den Wert <b class="code">res</b> um das Ergebnis des obigen Ausdrucks.
+        </p>
+        <pre class="brush: javascript">
+res += parseInt(digit) ** l;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie kann man einen Vergleich von Werten durchführen?
+    </div>
+    <div class="answer">
+        <p>
+            Ja, am Ende müssen Sie das logische Ergebnis des Vergleichs der berechneten Summe der angetriebenen Ziffern mit der ursprünglichen Zahl zurückgeben.
+        </p>
+        <pre class="brush: javascript">
+return res == num;
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise zusammenführen und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const text = num.toString();
+    const l = text.length;
+    let res = 0;
+    for (let digit of text)
+        res += parseInt(digit) ** l;
+    
+    return res == num;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Javascript-Held sein!
+    </div>
+    <div class="answer">
+        <p>Klar, schnappen Sie es sich!</p>
+        <p>
+            Erstellen Sie ohne Konvertierung in einen String eine Liste von Ziffern durch kontinuierliche Division durch 10.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    let temp = num, digits = [];
+    while(temp> 0) {
+        const digit = temp % 10;
+        digits.push(digit);
+        temp = Math.floor(temp / 10);
+    }
+    const l = digits.length;
+    
+    return digits.reduce((a, b) => a + Math.pow(b, l), 0) == num;
+}
+        </pre>
+        </div>
+        <p>
+            Erstellen Sie ein Array von Ziffern, indem Sie die ursprüngliche Zahl in einen String konvertieren, diesen in ein Array von String-Ziffern aufteilen und jede String-Ziffer zurück in eine Ganzzahl konvertieren. Verwenden Sie <b class="code">reduce</b>, um die Summe der angetriebenen Ziffern zu zählen.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function isArmstrong(num: number): boolean {
+
+    const digits = num.toString().split('').map(Number);
+    const len = digits.length;
+    
+    return digits.reduce((sum, digit) => sum + Math.pow(digit, len), 0) === num;
+}
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Missionsmenü und sehen Sie sich viele weitere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
